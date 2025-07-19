@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Consulta de Iniciativas</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 1rem; background-color: #f9f9f9; }
+    form { background-color: #fff; padding: 1rem 2rem; border-radius: 8px; max-width: 800px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { color: #333; }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input[type="text"], input[type="email"], select, textarea {
+      width: 100%; padding: 8px; margin-top: 4px; border-radius: 4px; border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 1.5rem; padding: 10px 20px; background-color: #0078D7;
+      color: white; border: none; border-radius: 4px; cursor: pointer;
+    }
+    button:hover { background-color: #005a9e; }
+  </style>
+</head>
+<body>
+  <form method="POST" action="https://ogsonsa.app.n8n.cloud/webhook/consulta_iniciativas">
+    <h2>Consulta de iniciativas parlamentarias</h2>
+
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" name="correo" id="correo" required />
+
+    <label for="pregunta">¿Qué desea saber?</label>
+    <textarea name="pregunta" id="pregunta" rows="3" placeholder="Ejemplo: iniciativas sobre menores migrantes en 2023..."></textarea>
+
+    <label for="registro">Nº de Registro:</label>
+    <input type="text" name="registro" id="registro" />
+
+    <label for="grupo">Grupo parlamentario:</label>
+    <select name="grupo" id="grupo">
+      <option value="">(Todos)</option>
+      <option value="VOX">VOX</option>
+      <option value="PP">PP</option>
+      <option value="PSOE">PSOE</option>
+      <option value="Más Madrid">Más Madrid</option>
+      <option value="UP">Unidas Podemos</option>
+    </select>
+
+    <label for="tipo_ini">Tipo de iniciativa:</label>
+    <select name="tipo_ini" id="tipo_ini">
+      <option value="">(Todos)</option>
+      <option value="PNL">PNL</option>
+      <option value="PCOC">PCOC</option>
+      <option value="PCOP">PCOP</option>
+      <option value="Comparecencia">Comparecencia</option>
+      <option value="Interpelación">Interpelación</option>
+    </select>
+
+    <label for="estado">Estado:</label>
+    <select name="estado" id="estado">
+      <option value="">(Todos)</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Aprobada">Aprobada</option>
+      <option value="Rechazada">Rechazada</option>
+    </select>
+
+    <label for="procedencia">Procedencia:</label>
+    <select name="procedencia" id="procedencia">
+      <option value="">(Todas)</option>
+      <option value="Pleno">Pleno</option>
+      <option value="Comisión">Comisión</option>
+      <option value="Mesa">Mesa</option>
+    </select>
+
+    <label for="asunto">Palabras clave en Asunto:</label>
+    <input type="text" name="asunto" id="asunto" placeholder="Ej: vivienda, menores, medio ambiente" />
+
+    <label for="fecha_desde">Fecha desde:</label>
+    <input type="date" name="fecha_desde" id="fecha_desde" />
+
+    <label for="fecha_hasta">Fecha hasta:</label>
+    <input type="date" name="fecha_hasta" id="fecha_hasta" />
+
+    <label for="formato">¿Cómo quieres recibir el resultado?</label>
+    <select name="formato" id="formato" required>
+      <option value="correo_html">Resumen inteligente por correo</option>
+      <option value="correo_csv">Resumen + archivo CSV por correo</option>
+      <option value="telegram">Resumen por Telegram</option>
+    </select>
+
+    <button type="submit">Enviar consulta</button>
+  </form>
+</body>
+</html>
